@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+
+
+    <h:head>
+        <title>Party Page</title>
+    </h:head>
+    <h:body>
+
+        <h2> You are viewing the Party Page </h2>
+        <h:form>
+
+
+
+            <f:metadata>
+                <f:viewParam name="id" value="#{partyPresenter.id}" /> 
+                <f:viewAction action="#{partyPresenter.detail()}" />                           
+
+            </f:metadata>
+
+            <span class="ui-float-label">
+
+                <p:datePicker id="partyTime" value="#{partyPresenter.party.partyTime}"/>
+                <p:outputLabel  for="@previous" value="Party Time"/>
+                <p:message for="partyTime"/>            
+            </span>
+
+            <span class="ui-float-label">
+
+                <p:inputText id="partyName" value="#{partyPresenter.party.partyName}"/>
+                <p:outputLabel  for="@previous" value="Party Name"/>
+                <p:message for="partyName"/>            
+            </span>
+
+            <p:dataTable id="registrationstable" widgetVar="critt"  value="#{partyPresenter.party.registration}" var="registration" editable="true" editMode="cell" >
+
+
+                <f:facet name="header">
+                    Attendees in the Party
+
+                    <p:commandButton value="Add"  actionListener="#{partyPresenter.addRegistration()}"  process="@this"  oncomplete="PF('critt').addRow();"/>
+                </f:facet>
+
+
+
+                <p:column headerText="Attendee">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            #{empty registration.attendee ? 'Select Attendee' : registration.attendee.firstName}
+
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{registration.attendee}" converter="omnifaces.SelectItemsConverter">
+
+                                <f:selectItem itemLabel="Select attendee" itemValue="" />
+
+                                <f:selectItems value="#{attendeeListPresenter.attendees}" var="attendee" itemLabel="#{attendee.firstName}" itemValue="#{attendee}" />
+
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+
+
+                <p:column headerText="Action">
+
+                    <p:commandButton value="Remove" process="@this" actionListener="#{registration.party.removeRegistration(registration)}" update="registrationsTable" />
+
+
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:button value="Back" outcome="attendees" /> 
+            <p:commandButton value = "Save" action="#{partyPresenter.save()}" ajax="false" />
+
+
+         </h:form>
+        
+        
+    </h:body>
+</html>

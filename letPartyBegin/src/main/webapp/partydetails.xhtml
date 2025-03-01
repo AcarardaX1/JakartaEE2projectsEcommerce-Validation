@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Party Details Page</title>
+    </h:head>
+    <h:body>
+        
+        
+        <h2>About the Party and Attendees</h2>
+        
+        <h:form>
+            
+             <p:dataTable id="attendeesTable" 
+                         value="#{pageDetailsPresenter.attendees}" 
+                         var="attendee"
+                         size="small" 
+                         paginator="true" 
+                         rows="10" 
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+                         rowsPerPageTemplate="5,10,15">   
+
+                 <f:facet name="header">
+                    List of Attendees
+                </f:facet>
+
+                <p:column headerText="Attendee Name">
+                    <h:outputText value="#{attendee.name}" />
+                </p:column>
+
+                <p:column headerText="Check-in Time">
+                    <h:outputText value="#{attendee.checkInTime}">
+                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:button value="Back to Home" outcome="index" />
+            
+            
+            
+            
+            
+            
+            
+        </h:form>
+        
+    </h:body>
+</html>

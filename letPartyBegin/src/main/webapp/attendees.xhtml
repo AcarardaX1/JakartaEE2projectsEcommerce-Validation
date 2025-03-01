@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Attendee Page</title>
+    </h:head>
+
+    <h:body>
+        
+            <h2>List of Attendees</h2> <br /><br />
+<h:form>
+
+            <p:button value="New" outcome="attendee" />
+            <br/><br/>
+
+            <p:dataTable id="attendeesTable" value="#{attendeeListPresenter.lazyAttendees}" var="attendee" lazy="true" size="small" paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" rowsPerPageTemplate="5,10,15">                                          
+
+
+                <f:facet name ="header">
+                    List for Attendees
+                </f:facet>
+
+                <f:facet name="footer">
+                    Attendees' List footer, Page ends
+                </f:facet>
+
+
+
+                <p:column headerText="Date of Birth" field="birthDate" filterable="false">
+
+
+                    <h:outputText value="#{attendee.birthDate}">
+                        <f:convertDateTime type="localDateTime"   />
+                    </h:outputText>
+
+                </p:column>
+                <p:column headerText="Attendee Name" field="firstName" />
+
+
+                <p:column headerText="Action">
+
+                    <p:button title="Edit" icon="pi pi-pencil" outcome="attendee" >
+                        <f:param name="id" value="#{attendee.id}" /> 
+                    </p:button>
+
+
+                    <p:commandButton title="delete" icon="pi pi-trash" actionListener="#{attendeeListPresenter.delete(attendee.id)}" update="@form" styleClass="ml-2 ui-button-danger"  />
+
+                </p:column>
+
+            </p:dataTable >
+
+
+
+            <p:button value="Homepage" outcome="index" />
+        </h:form>
+    </h:body>
+</html>

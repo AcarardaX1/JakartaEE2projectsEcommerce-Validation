@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+    <h:head>
+        <title>Attendee Page</title>
+        <f:metadata> 
+            <f:viewParam name="id" value="#{attendeePresenter.id}" /> 
+            <f:viewAction action="#{attendeePresenter.detail()}" /> 
+        </f:metadata>
+
+
+    </h:head>
+    <h:body>
+        <h2>Attendee Info</h2> 
+        <br /><br />
+        <h:form>
+
+            <p:messages globalOnly="true"  showDetail="true" />
+
+            <span class="ui-float-label">
+                <p:inputText id="firstName" value="#{attendeePresenter.attendee.firstName}"/>
+                <p:outputLabel for="@previous" value="First Name"/>
+                <p:message for="firstName" />
+            </span>
+
+            <span class="ui-float-label">
+                <p:inputText id="lastName" value="#{attendeePresenter.attendee.lastName}"/>
+                <p:outputLabel for="@previous" value="Last Name"/>
+                <p:message for="lastName" />
+            </span>
+            
+            <span class="ui-float-label">
+                <p:inputText id="birthDate" value="#{attendeePresenter.attendee.birthDate}"/>
+                <p:outputLabel for="@previous" value="Date of Birth"/>
+                <p:message for="birthDate" />
+            </span>
+
+            <p:commandButton value="Save" action="#{attendeePresenter.save()}" ajax="false"  />
+            <br /><br />
+            <p:button value="Back to the list"  icon="pi pi-arrow-left"  outcome="attendees" />
+        </h:form>
+
+    </h:body>
+</html>
