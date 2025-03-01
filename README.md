@@ -7,7 +7,7 @@ Its validation part starts with the attendees' participation to party(s) and ret
 
 For the 2nd Project(shoppee), It is basically tending on a E-Commerce website that having Cart, Item and CartItem(like a basket) to view the products and its' info(i.e. Name, quantity)
 
-I have used IDE for Apache NetBeans 25 version for writing and compiling the code.
+I have used IDE for Apache NetBeans 25 version for writing and compiling the code. Plus, Linux Debian 12 selected as an Operating System.
 
 For its Front-End and HTML(as of xhtml file(s) ) part, I have utilized PrimeFaces/OmniFaces to make the JSF files more elaborted.
 
