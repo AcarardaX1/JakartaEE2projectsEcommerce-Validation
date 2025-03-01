@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+    <h:head> Cart detail </h:head>
+    <h:body>
+        <h:form>
+
+            <h2>Viewing Section Cart Options</h2>
+
+            <title>Cart Sector </title>
+
+            <f:metadata>
+                <f:viewParam name="id" value="#{cartPresenter.id}" />
+                <f:viewAction action="#{cartPresenter.detail()}" />
+            </f:metadata>
+
+            <span class="ui-float-label">
+                <p:datePicker id="created" value="#{cartPresenter.cart.created}"/>
+                <p:outputLabel for="@previous" value="Creation Date"/>
+                <p:message for="created" />
+            </span>
+
+            <span class="ui-float-label">
+                <p:inputText id="name" value="#{cartPresenter.cart.name}"/>
+                <p:outputLabel for="@previous" value="Cart Name"/>
+                <p:message for="name" />
+            </span>
+
+            <p:dataTable id="cartItemsTable" widgetVar="critt"  value="#{cartPresenter.cart.cartItems}" var="cartItem" editable="true" editMode="cell" >
+
+
+                <f:facet name="header">
+                    Items in the Cart
+
+                    <p:commandButton value="Add"  actionListener="#{cartPresenter.addCartItem()}"  process="@this"  oncomplete="PF('critt').addRow();"/>
+                </f:facet>
+
+
+
+                <p:column headerText="Item">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            #{empty cartItem.item ? 'Select item' : cartItem.item.name}
+
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{cartItem.item}" converter="omnifaces.SelectItemsConverter">
+                            
+                                <f:selectItem itemLabel="Select item" itemValue="" />
+                                
+                                <f:selectItems value="#{itemListPresenter.items}" var="item" itemLabel="#{item.name}" itemValue="#{item}" />
+                                
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+
+
+
+                </p:column>
+
+                <p:column headerText="Quantity">
+
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            #{cartItem.quantity}                               
+                        </f:facet>
+
+                        <f:facet name="input">
+                            <p:inputNumber value="#{cartItem.quantity}" modifyValueOnWheel="false" />                              
+                        </f:facet>
+
+                    </p:cellEditor>
+
+
+                </p:column>
+
+                <p:column headerText="Action">
+
+                    <p:commandButton value="Remove" process="@this" actionListener="#{cartPresenter.cart.removeCartItem(cartItem)}" update="cartItemsTable" />
+
+
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:button value="Back" outcome="carts" /> 
+            <p:commandButton value = "Save" action="#{cartPresenter.save()}" ajax="false" />
+
+
+        </h:form>     
+    </h:body>
+
+
+</html>

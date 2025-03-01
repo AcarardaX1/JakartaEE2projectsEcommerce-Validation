@@ -1,0 +1,10 @@
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/control/DuplicatedException.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/boundary/ItemService.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/presentiation/shopping/CartListPresenter.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/presentiation/shopping/CartPresenter.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/entity/CartItem.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/presentiation/shopping/ItemListPresenter.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/boundary/CartService.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/presentiation/shopping/ItemPresenter.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/entity/Item.java
+/home/ardaacx/NetBeansProjects/shoppee/src/main/java/com/javacourse/shoppee/business/shopping/entity/Cart.java

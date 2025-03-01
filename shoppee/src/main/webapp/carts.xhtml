@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Cart Sector</title>
+    </h:head>
+    <h:body>
+
+        <h2>Cart List Section</h2>
+
+
+        <h:form>  
+            <p:button value="New" outcome="cart"/>
+
+            <p:dataTable id="cartsTable"   value="#{cartListPresenter.carts}" var="cart" >
+
+                <f:facet name="header">
+                    List of carts
+                </f:facet> 
+
+                <p:column headerText="Creation">
+
+                    <h:outputText value="#{cart.created}">  
+                        <f:convertDateTime type="localDate" />
+                    </h:outputText>    
+
+                </p:column  >
+
+                <p:column headerText="Name" >
+
+                    #{cart.name}
+
+                </p:column>
+
+
+                <p:column headerText="Action" >
+
+                    <p:button value="Edit" outcome="cart" >
+
+                        <f:param name="id" value="#{cart.id}" />      
+                    </p:button>
+
+                    <p:commandButton value="Delete" actionListener="#{cartListPresenter.delete(cart.id)}" update="@form" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <p:button value="Homepage" outcome="index" />
+    </h:body>
+</html>

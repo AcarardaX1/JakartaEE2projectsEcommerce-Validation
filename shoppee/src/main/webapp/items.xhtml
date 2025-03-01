@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+    <h:head>
+        <title>Terzo Progetto</title>
+    </h:head>
+
+    <h:body>
+
+        <h2>Items List</h2> <br /><br />
+
+
+        <p:button value="New" outcome="item" />
+        <br/><br/>
+        <h:form>
+            <p:dataTable id="itemsTable" value="#{itemListPresenter.lazyItems}" var="item" lazy="true" size="small" paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" rowsPerPageTemplate="5,10,15">                                          
+
+
+                <f:facet name ="header">
+                    Items List
+                </f:facet>
+
+                <f:facet name="footer">
+                    Items' List footer, Page ends
+                </f:facet>
+
+
+
+                <p:column headerText="Creation date and time" field="created" filterable="false">
+
+
+                    <h:outputText value="#{item.created}">
+                        <f:convertDateTime type="localDateTime"   />
+                    </h:outputText>
+
+                </p:column>
+                <p:column headerText="Item Name" field="name" />
+
+
+                <p:column headerText="Action">
+
+                    <p:button title="Edit" icon="pi pi-pencil" outcome="item" >
+                        <f:param name="id" value="#{item.id}" /> 
+                    </p:button>
+
+
+                    <p:commandButton title="Delete" icon="pi pi-trash" actionListener="#{itemListPresenter.delete(item.id)}" update="@form" styleClass="ml-2 ui-button-danger"  />
+
+                </p:column>
+
+            </p:dataTable >
+        </h:form>
+
+
+        <p:button value="Homepage" outcome="index" />
+
+    </h:body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+    <h:head>
+        <title>Progetto2</title>
+        <f:metadata> 
+            <f:viewParam name="id" value="#{itemPresenter.id}" /> 
+            <f:viewAction action="#{itemPresenter.detail()}" /> 
+        </f:metadata>
+
+
+    </h:head>
+    <h:body>
+        <h2>Item detail</h2> 
+        <br /><br />
+        <h:form>
+            
+            <p:messages globalOnly="true"  showDetail="true" />
+                
+            <span class="ui-float-label">
+                <p:inputText id="name" value="#{itemPresenter.item.name}"/>
+                <p:outputLabel for="@previous" value="Item"/>
+                <p:message for="name" />
+            </span>
+
+
+          
+
+            <p:commandButton value="Save" action="#{itemPresenter.save()}" ajax="false"  />
+            <br /><br />
+            <p:button value="Back to the list"  icon="pi pi-arrow-left"  outcome="items" />
+        </h:form>
+
+    </h:body>
+</html>
